@@ -11,7 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-private const val BASE_URL = "https://s3.eu-central-1.amazonaws.com/wunderfleet-recruiting-dev"
+private const val BASE_URL = "https://s3.eu-central-1.amazonaws.com/wunderfleet-recruiting-dev/"
 
 /**
  * Dagger module to provide Retrofit necessary objects

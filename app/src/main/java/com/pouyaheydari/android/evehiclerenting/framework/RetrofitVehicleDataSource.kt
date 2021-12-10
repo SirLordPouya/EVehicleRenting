@@ -6,6 +6,6 @@ import retrofit2.http.GET
 
 interface RetrofitVehicleDataSource : VehicleDataSource {
 
-    @GET
+    @GET("cars.json")
     override suspend fun getAllVehicles(): List<Vehicles>
 }
