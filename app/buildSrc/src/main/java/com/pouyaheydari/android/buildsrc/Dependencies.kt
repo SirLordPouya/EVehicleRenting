@@ -4,7 +4,7 @@ object Libs {
 
     object Kotlin {
         private const val version = "1.6.0"
-        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$version"
+        const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
     }
 
@@ -37,11 +37,22 @@ object Libs {
         const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
     }
 
+    object Map{
+        private const val version = "18.0.0"
+        const val googleMap = "com.google.android.gms:play-services-maps:$version"
+    }
+
+    object JavaX{
+        const val inject = "javax.inject:javax.inject:1"
+    }
+
     object AndroidX {
+        private const val lifecycleVersion = "2.4.0"
         const val coreKtx = "androidx.core:core-ktx:1.7.0"
         const val appcompat = "androidx.appcompat:appcompat:1.4.0"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.2"
-        const val lifecycle = "androidx.lifecycle:lifecycle-extensions:2.2.0"
+        const val liveData = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+        const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
         const val activity = "androidx.activity:activity-ktx:1.4.0"
 
         object Navigation {
