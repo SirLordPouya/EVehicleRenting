@@ -40,8 +40,24 @@ dependencies {
     implementation(Libs.AndroidX.appcompat)
     implementation(Libs.AndroidX.constraintLayout)
 
-
     implementation(Libs.Material.material)
+
+    implementation(Libs.AndroidX.Navigation.fragment)
+    implementation(Libs.AndroidX.Navigation.ui)
+    implementation(Libs.AndroidX.activity)
+    implementation(Libs.AndroidX.liveData)
+    implementation(Libs.AndroidX.viewModel)
+
+    implementation(Libs.Map.googleMap)
+
+    kapt(Libs.Network.Moshi.moshi)
+
+    implementation(Libs.Hilt.android)
+    kapt(Libs.Hilt.compiler)
+
+    implementation(Libs.Network.Retrofit.retrofit)
+    implementation(Libs.Network.Retrofit.moshiConverter)
+    implementation(Libs.Network.Retrofit.logging)
 
     testImplementation(Libs.JUnit.junit)
     androidTestImplementation(Libs.Test.Ext.junit)
