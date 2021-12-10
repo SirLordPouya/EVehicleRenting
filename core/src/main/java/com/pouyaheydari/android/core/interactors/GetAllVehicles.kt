@@ -1,7 +1,8 @@
 package com.pouyaheydari.android.core.interactors
 
 import com.pouyaheydari.android.core.data.VehicleDataSource
+import javax.inject.Inject
 
-class GetAllVehicles constructor(private val vehicleDataSource: VehicleDataSource) {
+class GetAllVehicles @Inject constructor(private val vehicleDataSource: VehicleDataSource) {
     suspend operator fun invoke() = vehicleDataSource.getAllVehicles()
 }

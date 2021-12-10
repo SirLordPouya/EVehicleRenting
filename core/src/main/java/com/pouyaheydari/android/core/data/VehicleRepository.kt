@@ -1,6 +1,8 @@
 package com.pouyaheydari.android.core.data
 
-class VehicleRepository constructor(private val vehicleDataSource: VehicleDataSource) {
+import javax.inject.Inject
+
+class VehicleRepository @Inject constructor(private val vehicleDataSource: VehicleDataSource) {
 
     suspend fun getAllVehicles() = vehicleDataSource.getAllVehicles()
 
