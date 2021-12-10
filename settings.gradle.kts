@@ -7,3 +7,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "EVehicleRenting"
 include (":app")
+include(":core")
