@@ -64,8 +64,12 @@ class MapsFragment : Fragment() {
 
         viewModel.uiStatusLiveData.observe(viewLifecycleOwner) { status ->
             when (status) {
-                is Loading -> {}
-                is DataFetchFailure -> {}
+                is Loading -> {
+                    //TODO: fill this
+                }
+                is DataFetchFailure -> {
+                    // TODO: fill this
+                }
                 is AllVehiclesReceived -> {
                     showVehiclesOnMap(status.vehicles)
                 }

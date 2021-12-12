@@ -1,32 +1,26 @@
 package com.pouyaheydari.android.evehiclerenting.presentation.details
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.pouyaheydari.android.evehiclerenting.R
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import com.pouyaheydari.android.evehiclerenting.databinding.VehicleDetailsFragmentBinding
 
 class VehicleDetailsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = VehicleDetailsFragment()
-    }
-
-    private lateinit var viewModel: VehicleDetailsViewModel
+    private val viewModel: VehicleDetailsViewModel by viewModels()
+    private lateinit var binding: VehicleDetailsFragmentBinding
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.vehicle_details_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(VehicleDetailsViewModel::class.java)
-        // TODO: Use the ViewModel
+    ): View {
+        binding = VehicleDetailsFragmentBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
 }
