@@ -52,6 +52,9 @@ dependencies {
     implementation(Libs.AndroidX.viewModel)
 
     implementation(Libs.Map.googleMap)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 
     kapt(Libs.Network.Moshi.moshi)
 

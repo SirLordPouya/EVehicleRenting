@@ -15,7 +15,7 @@ data class Vehicles(
     val pricingParking: String,
     val pricingTime: String,
     val reservationState: Int,
-    val title: String,
+    var title: String?,
     val vehicleStateId: Int,
     val vehicleTypeId: Int,
     val zipCode: String

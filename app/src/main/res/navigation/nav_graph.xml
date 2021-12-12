@@ -9,5 +9,14 @@
         android:id="@+id/mapsFragment"
         android:name="com.pouyaheydari.android.evehiclerenting.presentation.map.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" />
+        tools:layout="@layout/fragment_maps" >
+        <action
+            android:id="@+id/action_mapsFragment_to_vehicleDetailsFragment"
+            app:destination="@id/vehicleDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/vehicleDetailsFragment"
+        android:name="com.pouyaheydari.android.evehiclerenting.presentation.details.VehicleDetailsFragment"
+        android:label="vehicle_details_fragment"
+        tools:layout="@layout/vehicle_details_fragment" />
 </navigation>

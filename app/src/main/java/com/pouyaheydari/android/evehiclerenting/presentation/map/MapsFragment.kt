@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -16,8 +18,10 @@ import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.pouyaheydari.android.core.domain.Vehicles
 import com.pouyaheydari.android.evehiclerenting.R
 import com.pouyaheydari.android.evehiclerenting.databinding.FragmentMapsBinding
+import com.pouyaheydari.android.evehiclerenting.presentation.map.MapsDataResource.*
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -37,6 +41,11 @@ class MapsFragment : Fragment() {
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
         viewModel.getVehicles()
+
+        googleMap.setOnMarkerClickListener {
+            viewModel.onCarClicked(it.tag as Int)
+            true
+        }
     }
 
     override fun onCreateView(
@@ -53,12 +62,48 @@ class MapsFragment : Fragment() {
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-        viewModel.vehiclesLiveData.observe(viewLifecycleOwner) { vehicles ->
-            vehicles.forEach {
-                map?.addMarker(
-                    MarkerOptions().position(LatLng(it.lat, it.lon)).icon(carBitmap).title(it.title)
-                )
+        viewModel.uiStatusLiveData.observe(viewLifecycleOwner) { status ->
+            when (status) {
+                is Loading -> {}
+                is DataFetchFailure -> {}
+                is AllVehiclesReceived -> {
+                    showVehiclesOnMap(status.vehicles)
+                }
+                is CarSelected -> {
+                    navigateToCarDetails()
+                }
+                is CarFocused -> {
+                    showFocusedVehicleOnMap(status.selectedCar)
+                }
             }
         }
+    }
+
+    private fun navigateToCarDetails() {
+        findNavController().navigate(R.id.action_mapsFragment_to_vehicleDetailsFragment)
+    }
+
+    private fun showFocusedVehicleOnMap(selectedCar: Vehicles?) {
+        selectedCar?.let { vehicle ->
+            map?.clear()
+            val marker = showMarker(vehicle)
+            marker?.let {
+                map?.moveCamera(CameraUpdateFactory.newLatLngZoom(it.position, 15F))
+                it.showInfoWindow()
+            }
+        }
+    }
+
+    private fun showVehiclesOnMap(vehicles: List<Vehicles>?) {
+        map?.clear()
+        vehicles?.forEach { showMarker(it) }
+    }
+
+    private fun showMarker(vehicles: Vehicles) = with(vehicles) {
+        val marker = map?.addMarker(
+            MarkerOptions().position(LatLng(lat, lon)).icon(carBitmap).title(title)
+        )
+        marker?.tag = carId
+        marker
     }
 }
