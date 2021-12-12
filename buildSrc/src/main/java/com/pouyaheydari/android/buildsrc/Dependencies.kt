@@ -8,6 +8,12 @@ object Libs {
         const val gradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
     }
 
+    object Glide {
+        private const val version = "4.12.0"
+        const val glide = "com.github.bumptech.glide:glide:$version"
+        const val compiler = "com.github.bumptech.glide:compiler:$version"
+    }
+
     object Coroutines {
         private const val version = "1.5.2"
         const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
@@ -37,12 +43,12 @@ object Libs {
         const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"
     }
 
-    object Map{
+    object Map {
         private const val version = "18.0.0"
         const val googleMap = "com.google.android.gms:play-services-maps:$version"
     }
 
-    object JavaX{
+    object JavaX {
         const val inject = "javax.inject:javax.inject:1"
     }
 

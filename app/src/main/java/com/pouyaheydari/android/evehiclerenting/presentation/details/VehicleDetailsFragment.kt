@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.pouyaheydari.android.evehiclerenting.databinding.VehicleDetailsFragmentBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class VehicleDetailsFragment : Fragment() {
 
     private val viewModel: VehicleDetailsViewModel by viewModels()
@@ -23,4 +24,8 @@ class VehicleDetailsFragment : Fragment() {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.toString()
+    }
 }

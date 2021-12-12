@@ -61,6 +61,9 @@ dependencies {
     implementation(Libs.Hilt.android)
     kapt(Libs.Hilt.compiler)
 
+    implementation(Libs.Glide.glide)
+    implementation(Libs.Glide.compiler)
+
     implementation(Libs.Network.Retrofit.retrofit)
     implementation(Libs.Network.Retrofit.moshiConverter)
     implementation(Libs.Network.Retrofit.logging)
