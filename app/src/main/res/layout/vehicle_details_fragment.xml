@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,10 +16,11 @@
             app:layout_scrollFlags="enterAlwaysCollapsed|scroll">
 
             <ImageView
-                android:id="@+id/imgAlbum"
+                android:id="@+id/imgVehicle"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
+                android:src="@drawable/ic_car_placeholder"
                 app:layout_collapseMode="parallax" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -30,7 +32,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <TextView
-            android:id="@+id/txtAlbumName"
+            android:id="@+id/txtVehicleName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -46,12 +48,12 @@
             android:id="@+id/progressBar"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            app:layout_constraintBottom_toTopOf="@id/recycler"
+            app:layout_constraintBottom_toTopOf="@id/scrollView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/txtArtistName"
+            android:id="@+id/txtVehicleLicence"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -59,27 +61,240 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtAlbumName" />
+            app:layout_constraintTop_toBottomOf="@id/txtVehicleName" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler"
+
+        <ScrollView
+            android:id="@+id/scrollView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:nestedScrollingEnabled="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtArtistName" />
+            app:layout_constraintTop_toBottomOf="@id/txtVehicleLicence">
 
-        <Button
-            android:id="@+id/empty"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/txtArtistName" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/imgCleanness"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_car_placeholder"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/imgDamage"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/ic_car_placeholder"
+                    app:layout_constraintStart_toEndOf="@id/imgCleanness"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/labelLicence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/licence_plate"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imgCleanness" />
+
+                <TextView
+                    android:id="@+id/txtLicence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/labelLicence"
+                    app:layout_constraintStart_toEndOf="@id/labelLicence"
+                    app:layout_constraintTop_toTopOf="@id/labelLicence"
+                    tools:text="FBL 081" />
+
+                <TextView
+                    android:id="@+id/labelFuel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/fuel_level"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelLicence" />
+
+                <TextView
+                    android:id="@+id/txtFuel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/labelFuel"
+                    app:layout_constraintStart_toEndOf="@id/labelFuel"
+                    app:layout_constraintTop_toTopOf="@id/labelFuel"
+                    tools:text="27" />
+
+                <TextView
+                    android:id="@+id/labelPricingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/pricing_time"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelFuel" />
+
+                <TextView
+                    android:id="@+id/txtPricingTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/labelPricingTime"
+                    app:layout_constraintStart_toEndOf="@id/labelPricingTime"
+                    app:layout_constraintTop_toTopOf="@id/labelPricingTime"
+                    tools:text="0,22/km" />
+
+                <TextView
+                    android:id="@+id/labelPricingParking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/pricing_parking"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelPricingTime" />
+
+                <TextView
+                    android:id="@+id/txtPricingParking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/labelPricingParking"
+                    app:layout_constraintStart_toEndOf="@id/labelPricingParking"
+                    app:layout_constraintTop_toTopOf="@id/labelPricingParking"
+                    tools:text="0,05/min" />
+
+                <TextView
+                    android:id="@+id/labelCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/city"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelPricingParking" />
+
+                <TextView
+                    android:id="@+id/txtCity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/labelCity"
+                    app:layout_constraintStart_toEndOf="@id/labelCity"
+                    app:layout_constraintTop_toTopOf="@id/labelCity"
+                    tools:text="Dortmund" />
+
+                <TextView
+                    android:id="@+id/labelZip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/zip_code"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelCity" />
+
+                <TextView
+                    android:id="@+id/txtZip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/labelZip"
+                    app:layout_constraintStart_toEndOf="@id/labelZip"
+                    app:layout_constraintTop_toTopOf="@id/labelZip"
+                    tools:text="Dortmund" />
+
+                <TextView
+                    android:id="@+id/labelAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/address"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelZip" />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/labelAddress"
+                    app:layout_constraintStart_toEndOf="@id/labelAddress"
+                    app:layout_constraintTop_toTopOf="@id/labelAddress"
+                    tools:text="Bissenkamp 4" />
+
+                <TextView
+                    android:id="@+id/labelDamage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/damage_description"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelAddress" />
+
+                <TextView
+                    android:id="@+id/txtDamage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/labelDamage"
+                    app:layout_constraintStart_toEndOf="@id/labelDamage"
+                    app:layout_constraintTop_toTopOf="@id/labelDamage"
+                    tools:text="Marius hat gesagt das muss so, und so, und so\r\nUnd wenn ich das verändere?" />
+
+                <Button
+                    android:id="@+id/empty"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/reserve"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/labelDamage" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

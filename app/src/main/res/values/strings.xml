@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">EVehicleRenting</string>
+    <string name="licence_plate">Licence plate:</string>
+    <string name="fuel_level">Fuel level:</string>
+    <string name="pricing_time">Pricing time</string>
+    <string name="pricing_parking">Pricing parking:</string>
+    <string name="city">City:</string>
+    <string name="zip_code">Zip code:</string>
+    <string name="address">Address:</string>
+    <string name="reserve">Reserve</string>
+    <string name="damage_description">Damage description:</string>
 </resources>
