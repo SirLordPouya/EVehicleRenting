@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pouyaheydari.android.core.domain.ReserveRequest
 import com.pouyaheydari.android.core.interactors.GetRemoteVehicleById
 import com.pouyaheydari.android.core.interactors.GetSelectedVehicleId
+import com.pouyaheydari.android.core.interactors.ReserveVehicleById
 import com.pouyaheydari.android.evehiclerenting.framework.utils.NO_TITLE
-import com.pouyaheydari.android.evehiclerenting.presentation.details.DetailsDataResource.Loading
-import com.pouyaheydari.android.evehiclerenting.presentation.details.DetailsDataResource.VehicleDetailsReceived
+import com.pouyaheydari.android.evehiclerenting.presentation.details.DetailsDataResource.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,7 +17,8 @@ import javax.inject.Inject
 @HiltViewModel
 class VehicleDetailsViewModel @Inject constructor(
     private val getSelectedVehicleId: GetSelectedVehicleId,
-    private val getRemoteVehicleById: GetRemoteVehicleById
+    private val getRemoteVehicleById: GetRemoteVehicleById,
+    private val reserveVehicleById: ReserveVehicleById
 ) :
     ViewModel() {
 
@@ -31,6 +33,14 @@ class VehicleDetailsViewModel @Inject constructor(
             _uiStatusLiveData.postValue(VehicleDetailsReceived(response).also {
                 if (it.vehicleDetails?.title.isNullOrEmpty()) it.vehicleDetails?.title = NO_TITLE
             })
+        }
+    }
+
+    fun onReserveRequested() {
+        val vehicleId = getSelectedVehicleId()
+        viewModelScope.launch {
+            reserveVehicleById(ReserveRequest(vehicleId))
+            _uiStatusLiveData.postValue(RentalSuccess)
         }
     }
 }

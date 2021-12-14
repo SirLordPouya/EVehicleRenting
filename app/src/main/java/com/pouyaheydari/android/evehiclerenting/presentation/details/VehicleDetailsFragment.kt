@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -33,6 +34,10 @@ class VehicleDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.onViewLoaded()
 
+        binding.btnReserve.setOnClickListener {
+            viewModel.onReserveRequested()
+        }
+
         viewModel.uiStatusLiveData.observe(viewLifecycleOwner) {
             when (it) {
                 DataFetchFailure -> {
@@ -43,8 +48,17 @@ class VehicleDetailsFragment : Fragment() {
                     hideLoading()
                     showVehicleDetails(it.vehicleDetails)
                 }
+                RentalSuccess -> showRentalSuccess()
             }
         }
+    }
+
+    private fun showRentalSuccess() {
+        Toast.makeText(
+            requireContext(),
+            getString(R.string.you_rented_the_vehicle),
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     private fun showVehicleDetails(vehicleDetails: VehicleDetails?) = with(binding) {

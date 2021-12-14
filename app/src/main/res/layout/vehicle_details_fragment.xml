@@ -282,7 +282,7 @@
                     tools:text="Marius hat gesagt das muss so, und so, und so\r\nUnd wenn ich das verändere?" />
 
                 <Button
-                    android:id="@+id/empty"
+                    android:id="@+id/btnReserve"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"

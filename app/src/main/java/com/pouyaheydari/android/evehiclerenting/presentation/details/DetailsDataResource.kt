@@ -10,6 +10,8 @@ sealed class DetailsDataResource(
 
     object DataFetchFailure : DetailsDataResource()
 
+    object RentalSuccess : DetailsDataResource()
+
     class VehicleDetailsReceived(vehicleDetails: VehicleDetails) :
         DetailsDataResource(vehicleDetails = vehicleDetails)
 }
