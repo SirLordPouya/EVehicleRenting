@@ -52,9 +52,6 @@ dependencies {
     implementation(Libs.AndroidX.viewModel)
 
     implementation(Libs.Map.googleMap)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0")
 
     kapt(Libs.Network.Moshi.moshi)
 
@@ -68,9 +65,12 @@ dependencies {
     implementation(Libs.Network.Retrofit.moshiConverter)
     implementation(Libs.Network.Retrofit.logging)
 
-    testImplementation(Libs.JUnit.junit)
+    testImplementation(Libs.Test.JUnit.junit)
     androidTestImplementation(Libs.Test.Ext.junit)
     androidTestImplementation(Libs.Test.espressoCore)
+    testImplementation(Libs.Test.Mockk.mockk)
+    testImplementation(Libs.Coroutines.test)
+    testImplementation(Libs.Test.arch)
 }
 
 kapt {

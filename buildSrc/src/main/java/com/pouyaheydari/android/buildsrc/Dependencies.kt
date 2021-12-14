@@ -21,11 +21,6 @@ object Libs {
         const val test = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
     }
 
-    object JUnit {
-        private const val version = "4.13"
-        const val junit = "junit:junit:$version"
-    }
-
     object Material {
         const val material = "com.google.android.material:material:1.4.0"
     }
@@ -34,10 +29,20 @@ object Libs {
         private const val version = "1.4.0"
         const val core = "androidx.test:core:$version"
         const val rules = "androidx.test:rules:$version"
+        const val arch ="androidx.arch.core:core-testing:2.1.0"
 
         object Ext {
             private const val version = "1.1.2"
             const val junit = "androidx.test.ext:junit-ktx:$version"
+        }
+
+        object JUnit {
+            private const val version = "4.13"
+            const val junit = "junit:junit:$version"
+        }
+
+        object Mockk {
+            const val mockk = "io.mockk:mockk:1.12.1"
         }
 
         const val espressoCore = "androidx.test.espresso:espresso-core:3.3.0"

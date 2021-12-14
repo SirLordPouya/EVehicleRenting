@@ -8,8 +8,8 @@ import com.pouyaheydari.android.core.domain.ReserveRequest
 import com.pouyaheydari.android.core.interactors.GetRemoteVehicleById
 import com.pouyaheydari.android.core.interactors.GetSelectedVehicleId
 import com.pouyaheydari.android.core.interactors.ReserveVehicleById
-import com.pouyaheydari.android.evehiclerenting.presentation.utils.NO_TITLE
 import com.pouyaheydari.android.evehiclerenting.presentation.features.details.DetailsDataResource.*
+import com.pouyaheydari.android.evehiclerenting.presentation.utils.NO_TITLE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class VehicleDetailsViewModel @Inject constructor(
-    private val getSelectedVehicleId: GetSelectedVehicleId,
+    getSelectedVehicleId: GetSelectedVehicleId,
     private val getRemoteVehicleById: GetRemoteVehicleById,
     private val reserveVehicleById: ReserveVehicleById,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
@@ -27,9 +27,9 @@ class VehicleDetailsViewModel @Inject constructor(
 
     private val _uiStatusLiveData = MutableLiveData<DetailsDataResource>()
     val uiStatusLiveData: LiveData<DetailsDataResource> = _uiStatusLiveData
+    private val vehicleId = getSelectedVehicleId()
 
     fun onViewLoaded() {
-        val vehicleId = getSelectedVehicleId()
         viewModelScope.launch(dispatcher) {
             runCatching {
                 _uiStatusLiveData.postValue(Loading)
@@ -45,7 +45,6 @@ class VehicleDetailsViewModel @Inject constructor(
     }
 
     fun onReserveRequested() {
-        val vehicleId = getSelectedVehicleId()
         viewModelScope.launch(dispatcher) {
             runCatching {
                 reserveVehicleById(ReserveRequest(vehicleId))
