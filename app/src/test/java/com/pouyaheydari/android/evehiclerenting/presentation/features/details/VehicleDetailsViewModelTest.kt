@@ -56,7 +56,7 @@ class VehicleDetailsViewModelTest {
     }
 
     @Test
-    fun `test when fetching the list of vehicles then all vehicle must have a title`() =
+    fun `test when fetching the vehicle details then vehicle must have a title`() =
         coroutineDispatcher.runBlockingTest {
             coEvery { getRemoteVehicleById(1) }.coAnswers {
                 VehicleDetails(
