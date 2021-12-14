@@ -1,4 +1,4 @@
-package com.pouyaheydari.android.evehiclerenting.presentation.details
+package com.pouyaheydari.android.evehiclerenting.presentation.features.details
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +12,8 @@ import com.bumptech.glide.Glide
 import com.pouyaheydari.android.core.domain.VehicleDetails
 import com.pouyaheydari.android.evehiclerenting.R
 import com.pouyaheydari.android.evehiclerenting.databinding.VehicleDetailsFragmentBinding
-import com.pouyaheydari.android.evehiclerenting.presentation.details.DetailsDataResource.*
+import com.pouyaheydari.android.evehiclerenting.presentation.features.details.DetailsDataResource.*
+import com.pouyaheydari.android.evehiclerenting.presentation.utils.showGeneralError
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,9 +41,7 @@ class VehicleDetailsFragment : Fragment() {
 
         viewModel.uiStatusLiveData.observe(viewLifecycleOwner) {
             when (it) {
-                DataFetchFailure -> {
-                    // TODO
-                }
+                DataFetchFailure -> showGeneralError(requireView())
                 Loading -> showLoading()
                 is VehicleDetailsReceived -> {
                     hideLoading()

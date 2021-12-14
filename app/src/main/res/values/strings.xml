@@ -10,4 +10,5 @@
     <string name="reserve">Reserve</string>
     <string name="damage_description">Damage description:</string>
     <string name="you_rented_the_vehicle">You rented the vehicle!</string>
+    <string name="please_try_again">Please try again</string>
 </resources>

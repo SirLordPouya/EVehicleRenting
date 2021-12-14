@@ -1,4 +1,4 @@
-package com.pouyaheydari.android.evehiclerenting.presentation.map
+package com.pouyaheydari.android.evehiclerenting.presentation.features.map
 
 import com.pouyaheydari.android.core.domain.Vehicles
 

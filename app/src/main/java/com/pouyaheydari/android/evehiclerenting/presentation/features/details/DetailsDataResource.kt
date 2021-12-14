@@ -1,4 +1,4 @@
-package com.pouyaheydari.android.evehiclerenting.presentation.details
+package com.pouyaheydari.android.evehiclerenting.presentation.features.details
 
 import com.pouyaheydari.android.core.domain.VehicleDetails
 

@@ -1,4 +1,4 @@
-package com.pouyaheydari.android.evehiclerenting.framework.utils
+package com.pouyaheydari.android.evehiclerenting.presentation.utils
 
 /*
  *  Copyright 2017 Google Inc.
