@@ -1,9 +1,17 @@
 package com.pouyaheydari.android.evehiclerenting.presentation.features.map
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -29,13 +37,71 @@ class MapsFragment : Fragment() {
     private var map: GoogleMap? = null
     private val carBitmap by lazy { bitmapDescriptor(R.drawable.ic_car_marker, resources) }
 
+    private val permissionsResultCallback = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) {
+        when (it) {
+            true -> requestUserLocation()
+            false ->
+                Toast.makeText(
+                    requireContext(),
+                    getString(R.string.my_location_functionality_wont_work),
+                    Toast.LENGTH_LONG
+                ).show()
+        }
+    }
+
+    @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         map = googleMap
         viewModel.getVehicles()
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (isLocationPermissionGranted()) {
+                requestUserLocation()
+            } else {
+                checkLocationPermission()
+            }
+        } else {
+            requestUserLocation()
+        }
+
         googleMap.setOnMarkerClickListener {
             viewModel.onCarClicked(it.tag as Int)
             true
+        }
+    }
+
+    private fun isLocationPermissionGranted(): Boolean = checkSelfPermission(
+        requireContext(),
+        Manifest.permission.ACCESS_FINE_LOCATION
+    ) == PackageManager.PERMISSION_GRANTED
+
+    @SuppressLint("MissingPermission")
+    private fun requestUserLocation() {
+        map?.isMyLocationEnabled = true
+    }
+
+    private fun checkLocationPermission() {
+        if (checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                AlertDialog.Builder(requireContext())
+                    .setTitle(getString(R.string.location_permission_needed))
+                    .setMessage(getString(R.string.this_app_needs_the_location_permission_please_accept_to_use_location_functionality))
+                    .setPositiveButton(getString(R.string.ok)) { _, _ ->
+                        permissionsResultCallback.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+                    }
+                    .create()
+                    .show()
+
+
+            } else {
+                permissionsResultCallback.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+            }
         }
     }
 

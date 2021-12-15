@@ -11,4 +11,8 @@
     <string name="damage_description">Damage description:</string>
     <string name="you_rented_the_vehicle">You rented the vehicle!</string>
     <string name="please_try_again">Please try again</string>
+    <string name="location_permission_needed">Location Permission Needed</string>
+    <string name="this_app_needs_the_location_permission_please_accept_to_use_location_functionality">This app needs the Location permission, please accept to use location functionality</string>
+    <string name="ok">OK</string>
+    <string name="my_location_functionality_wont_work">My location functionality won\'t work!</string>
 </resources>

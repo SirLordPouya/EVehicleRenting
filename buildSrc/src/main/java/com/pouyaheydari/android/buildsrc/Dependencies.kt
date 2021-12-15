@@ -2,6 +2,11 @@ package com.pouyaheydari.android.buildsrc
 
 object Libs {
 
+    object Gradle {
+        private const val version = "7.0.4"
+        const val build = "com.android.tools.build:gradle:$version"
+    }
+
     object Kotlin {
         private const val version = "1.6.0"
         const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
@@ -29,7 +34,7 @@ object Libs {
         private const val version = "1.4.0"
         const val core = "androidx.test:core:$version"
         const val rules = "androidx.test:rules:$version"
-        const val arch ="androidx.arch.core:core-testing:2.1.0"
+        const val arch = "androidx.arch.core:core-testing:2.1.0"
 
         object Ext {
             private const val version = "1.1.2"
@@ -51,6 +56,7 @@ object Libs {
     object Map {
         private const val version = "18.0.0"
         const val googleMap = "com.google.android.gms:play-services-maps:$version"
+        const val location = "com.google.android.gms:play-services-location:19.0.0"
     }
 
     object JavaX {
